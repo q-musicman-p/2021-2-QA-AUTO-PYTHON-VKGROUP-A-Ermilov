@@ -33,6 +33,7 @@ class TestUI(Base):
         self.driver.refresh()
 
         fio = self.profile_page.find(self.profile_page.locators.FIO_FIELD_LOCATOR)
-        phone = self.profile_page.find(self.profile_page.locators.PHONE_FIELD_LOCATOR)
+        assert fio.get_attribute('value') == 'test' + r_number
 
-        assert fio.get_attribute('value') == 'test' + r_number and phone.get_attribute('value') == r_number
+        phone = self.profile_page.find(self.profile_page.locators.PHONE_FIELD_LOCATOR)
+        assert phone.get_attribute('value') == r_number

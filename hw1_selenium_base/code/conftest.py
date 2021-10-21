@@ -9,4 +9,4 @@ def driver():
 
     yield browser
 
-    browser.close()
+    browser.quit()

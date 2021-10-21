@@ -1,4 +1,5 @@
 import pytest
+from static_variables import EMAIL, PASSWORD
 from _pytest.fixtures import FixtureRequest
 from ui.pages.base_page import BasePage
 from ui.pages.main_page import MainPage
@@ -6,8 +7,7 @@ from ui.pages.header_page import HeaderPage
 from ui.pages.profile_page import ProfilePage
 
 
-EMAIL = 'pxzxjm2yv4pr@mail.ru'
-PASSWORD = 'test123test'
+
 
 
 class Base:

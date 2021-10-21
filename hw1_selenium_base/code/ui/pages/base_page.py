@@ -2,8 +2,7 @@ from ui.locators.base_page_locators import BasePageLocators
 from selenium.common.exceptions import StaleElementReferenceException, ElementClickInterceptedException
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
-
-CLICK_RETRY = 3
+from static_variables import CLICK_RETRY
 
 
 class BasePage(object):

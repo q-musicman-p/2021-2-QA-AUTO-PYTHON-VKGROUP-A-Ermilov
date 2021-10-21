@@ -1,4 +1,5 @@
-from ui.pages.base_page import BasePage, CLICK_RETRY
+from static_variables import CLICK_RETRY
+from ui.pages.base_page import BasePage
 from ui.locators.header_page_locators import HeaderPageLocators
 from selenium.webdriver.support.wait import TimeoutException
 
