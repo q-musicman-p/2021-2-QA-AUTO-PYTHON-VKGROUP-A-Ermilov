@@ -4,6 +4,10 @@ from ui.locators.header_page_locators import HeaderPageLocators
 from selenium.webdriver.support.wait import TimeoutException
 
 
+class UnknowTabNameException(Exception):
+    pass
+
+
 class HeaderPage(BasePage):
 
     locators = HeaderPageLocators()
@@ -24,6 +28,6 @@ class HeaderPage(BasePage):
         elif tab_name == 'statistics':
             tab_locator = self.locators.STATISTICS_BUTTON_LOCATOR
         else:
-            raise KeyError('Unknow tab name!')
+            raise UnknowTabNameException(f'Unknow tab name {tab_name}!')
 
         self.click(tab_locator, 10)

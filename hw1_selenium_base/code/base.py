@@ -7,9 +7,6 @@ from ui.pages.header_page import HeaderPage
 from ui.pages.profile_page import ProfilePage
 
 
-
-
-
 class Base:
 
     @pytest.fixture(scope='function')
