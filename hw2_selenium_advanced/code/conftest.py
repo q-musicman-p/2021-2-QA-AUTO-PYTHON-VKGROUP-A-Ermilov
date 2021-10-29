@@ -1,42 +1,32 @@
 import pytest
-import logging
-from webdriver_manager.chrome import ChromeDriverManager
+import os.path
+import shutil
+import sys
 
 from ui.fixtures import *
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
+
+
+def pytest_configure(config):
+    if sys.platform.startswith('win'):
+        base_dir = 'C:\\tests'
+    else:
+        base_dir = '/tmp/tests'
+
+    if not hasattr(config, 'workerinput'):
+        if os.path.exists(base_dir):
+            shutil.rmtree(base_dir)
+
+        os.makedirs(base_dir)
+
+    config.base_temp_dir = base_dir
 
 
 def pytest_addoption(parser):
-    parser.addoption('--url', default='http://www.python.org')
+    parser.addoption('--debug-log', action='store_true')
 
 
 @pytest.fixture(scope='session')
 def config(request):
-    url = request.config.getoption('--url')
+    debug_log = request.config.getoption('--debug-log')
 
-    return {'url': url}
-
-
-def get_driver(download_dir=None):
-    options = Options()
-    if download_dir is not None:
-        options.add_experimental_option("prefs", {"download.default_directory": download_dir})
-
-    manager = ChromeDriverManager(version='latest', log_level=logging.NOTSET)
-    browser = webdriver.Chrome(executable_path=manager.install(), options=options)
-
-    browser.maximize_window()
-    return browser
-
-@pytest.fixture(scope='function')
-def driver(config, temp_dir):
-    browser = get_driver(download_dir=temp_dir)
-    # url = config['url']
-    # browser.get(url)
-
-    yield browser
-
-    browser.quit()
-
-
+    return {'debug-log': debug_log}

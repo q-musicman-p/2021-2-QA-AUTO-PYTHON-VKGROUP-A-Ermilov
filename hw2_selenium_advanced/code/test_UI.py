@@ -1,26 +1,26 @@
-from time import sleep
-
 import pytest
+
+from time import sleep
 from base import Base
+
+class TestNegativeLogin(Base):
+
+    def test_uncorrect_credentials(self):
+        # self.login_page.try_to_login(email='vasya_pupkin@mail.ru', password='1234567890')
+        # assert "Error" in self.driver.page_source  # BAD!!!
+        pass
+
+    def test_some_neg_login(self):  # ???
+        pass
 
 
 class TestUI(Base):
 
-    @pytest.mark.UI
-    @pytest.mark.parametrize(
-        'tab_name, url',
-        [
-            pytest.param('profile', 'https://target.my.com/profile'),
-            pytest.param('statistics', 'https://target.my.com/statistics')
-        ]
-    )
-    def test_tabs_navigation(self, tab_name, url, login):
-        header_page = login
-        header_page.click_on_tab(tab_name)
-        assert self.driver.current_url.startswith(url)
+    def test_create_company(self, login):
+        pass
 
+    def test_create_segment(self, login):
+        pass
 
-    def test_123(self):
-        print("no login test")
-        sleep(5)
-        assert 1 + 2 == 3
+    def test_delete_segment(self, login):
+        pass

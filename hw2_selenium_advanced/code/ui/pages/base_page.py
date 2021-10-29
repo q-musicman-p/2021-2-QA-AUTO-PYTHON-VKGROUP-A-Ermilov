@@ -1,6 +1,6 @@
+import allure
+import logging
 import time
-
-import pytest
 
 from ui.locators.base_page_locators import BasePageLocators
 from selenium.common.exceptions import StaleElementReferenceException, ElementClickInterceptedException
@@ -20,7 +20,10 @@ class BasePage(object):
 
     def __init__(self, driver):
         self.driver = driver
-        self.is_opened()
+        self.logger = logging.getLogger('test')
+        is_opened = self.is_opened()
+
+        self.logger.debug(f"Init {self.__class__} with is_opened={is_opened}")
 
     def is_opened(self, timeout=BASE_TIMEOUT):
         """
@@ -30,7 +33,7 @@ class BasePage(object):
         """
 
         if self.url is None:
-            return False  # we return False, if page have diff url or havenot it
+            return False
 
         started = time.time()
         while time.time() - started < timeout:
@@ -40,14 +43,17 @@ class BasePage(object):
         raise PageNotLoadedException(f'{self.url} did not open in {timeout}sec for {self.__class__.__name__}.\n'
                                      f'Current url: {self.driver.current_url}.')
 
+    @allure.step
     def wait(self, timeout=None):
         if timeout is None:
             timeout = BASE_TIMEOUT
         return WebDriverWait(self.driver, timeout=timeout)
 
+    @allure.step("Find {locator}")
     def find(self, locator, timeout=None):
         return self.wait(timeout).until(EC.presence_of_element_located(locator))
 
+    @allure.step("Click on {locator}")
     def click(self, locator, timeout=None):
         for i in range(CLICK_RETRY):
             try:
@@ -62,6 +68,7 @@ class BasePage(object):
                 if i == CLICK_RETRY - 1:
                     raise
 
+    @allure.step('Fill field {locator} into {text}')
     def fill_field(self, locator, text, timeout=None):
         field = self.find(locator, timeout=timeout)
         field.clear()
