@@ -17,9 +17,9 @@ def temp_dir(request):
     return test_dir
 
 
-# @pytest.fixture(scope='session')  # ??? why?
-# def root_dir():
-#     return os.path.abspath(os.path.join(__file__, os.path.pardir))
+@pytest.fixture(scope='session')
+def root_dir():
+    return os.path.abspath(os.path.join(__file__, os.path.pardir, os.path.pardir))
 
 
 def get_driver(download_dir=None):

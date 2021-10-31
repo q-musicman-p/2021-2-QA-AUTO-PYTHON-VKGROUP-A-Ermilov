@@ -4,8 +4,8 @@ import allure
 import pytest
 
 from static_variables import EMAIL, PASSWORD
+from ui.pages.dashboard_page import DashboardPage
 from ui.pages.login_page import LoginPage
-from ui.pages.header_page import HeaderPage
 
 
 class Base:
@@ -41,4 +41,4 @@ class Base:
     def login(self):
         self.login_page.try_to_login(email=EMAIL, password=PASSWORD, timeout=15)
 
-        return HeaderPage(self.driver)
+        return DashboardPage(self.driver)

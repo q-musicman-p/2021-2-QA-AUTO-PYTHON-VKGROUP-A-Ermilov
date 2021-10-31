@@ -6,7 +6,7 @@ from ui.locators.login_page_locators import LoginPageLocators
 class LoginPage(BasePage):
 
     locators = LoginPageLocators()
-    url = 'https://target.my.com/'
+    url = 'https://target.my.com'
 
     def try_to_login(self, email, password, timeout=BASE_TIMEOUT):
         self.click(self.locators.ENTER_BUTTON_LOCATOR, timeout=timeout)
