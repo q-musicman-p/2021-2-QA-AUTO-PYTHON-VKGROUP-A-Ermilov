@@ -12,3 +12,11 @@ class LoginPageLocators:
         By.XPATH,
         '//div[contains(@class, "authForm-module-button")]'
     )
+    INVALID_LOGIN_OR_PWD_MESSAGE_LOCATOR = (
+        By.XPATH,
+        "//div[contains(@class, 'formMsg')]"
+    )
+    UNCORRECT_EMAIL_MESSAGE_LOCATOR = (
+        By.XPATH,
+        '//div[contains(@class, "notify-module-error")]'
+    )

@@ -1,4 +1,4 @@
-from time import sleep
+import allure
 
 from ui.locators.create_campaign_page_locators import CreateCampaignPageLocators
 from ui.pages.header_page import HeaderPage
@@ -10,6 +10,7 @@ class CreateCampaignPage(HeaderPage):
     locators = CreateCampaignPageLocators()
     url = 'https://target.my.com/campaign/new'
 
+    @allure.step('Create new traffic banner to {main_url}')
     def create_new_traffic_banner(self, main_url, campaign_name,  banner_picture_path, timeout=None):
         self.click(self.locators.TRAFFIC_LIST_ITEM_LOCATOR, timeout=timeout)
         decorators.wait(
@@ -26,7 +27,7 @@ class CreateCampaignPage(HeaderPage):
 
         self.click(self.locators.CREATE_CAMPAIGN_BUTTON_LOCATOR, timeout=timeout)
 
-        self.logger.debug('New traffic banner are created')
+        self.logger.debug(f'New traffic banner to {main_url} are created')
         import ui.pages.dashboard_page as dp
         return dp.DashboardPage(self.driver)
 

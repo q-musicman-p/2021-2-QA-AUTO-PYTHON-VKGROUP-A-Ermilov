@@ -1,4 +1,4 @@
-from time import sleep
+import  allure
 
 from ui.locators.segments_list_page_locators import SegmentsListPageLocators
 from ui.pages.create_segment_page import CreateSegmentPage
@@ -12,22 +12,27 @@ class SegmentsListPage(HeaderPage):
 
     def click_on_create_new_segment_button(self):
         try:
+            self.logger.debug('Not first try to create new segment')
             self.click(self.locators.CREATE_NEW_SEGMENT_BUTTON_LOCATOR)
         except TimeoutException:
+            self.logger.debug('First try to create new segment')
             self.click(self.locators.CREATE_NEW_SEGMENT_LINK_LOCATOR)
 
         return CreateSegmentPage(self.driver)
 
+    @allure.step('Create new segment {segment_name}')
     def create_new_segment(self, segment_name, timeout=None):
         create_segment_page = self.click_on_create_new_segment_button()
-        create_segment_page.create_new_segment(segment_name, timeout=timeout)
+        return create_segment_page.create_new_segment(segment_name, timeout=timeout)
 
-    def remove_segment(self, segment_name):
+    @allure.step('Remove segment {segment_name}')
+    def remove_segment(self, segment_name, timeout=None):
         self.click(
-            (
+            locator=(
                 self.locators.REMOVE_SEGMENT_LOCATOR_TEMPLATE[0],
                 self.locators.REMOVE_SEGMENT_LOCATOR_TEMPLATE[1].format(segment_name)
-            )
+            ),
+            timeout=timeout
         )
 
-        self.click(self.locators.CONFIRM_REMOVE_SEGMENT_BUTTON_LOCATOR)
+        self.click(self.locators.CONFIRM_REMOVE_SEGMENT_BUTTON_LOCATOR, timeout=timeout)

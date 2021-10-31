@@ -1,43 +1,46 @@
 import os.path
-
 import pytest
 
-from time import sleep
-
-from selenium.webdriver.common.by import By
-
+from selenium.common.exceptions import TimeoutException
 from base import Base
 from utils import functions
 
 
 class TestNegativeLogin(Base):
 
-    @pytest.mark.skip
+    # @pytest.mark.skip
     @pytest.mark.UI
     def test_uncorrect_credentials(self):
-        # self.login_page.try_to_login(email='vasya_pupkin@mail.ru', password='1234567890')
-        # assert "Error" in self.driver.page_source  # BAD!!!
-        pass
+        self.login_page.try_to_login(
+            email=functions.random_str(digits=False) + '@mail.ru',
+            password=functions.random_str(str_length=15),
+            timeout=25
+        )
+        self.login_page.find(self.login_page.locators.INVALID_LOGIN_OR_PWD_MESSAGE_LOCATOR)
 
-    @pytest.mark.skip
+    # @pytest.mark.skip
     @pytest.mark.UI
-    def test_some_neg_login(self):  # ???
-        pass
+    def test_uncorrect_email(self):
+        self.login_page.try_to_login(
+            email=functions.random_str(digits=False),
+            password=functions.random_str(str_length=15),
+            timeout=25
+        )
+        self.login_page.find(self.login_page.locators.UNCORRECT_EMAIL_MESSAGE_LOCATOR)
 
 
 class TestUI(Base):
 
+    # @pytest.mark.skip
     @pytest.mark.UI
     def test_create_campaign(self, login, root_dir):
-        create_campaign_page = login.create_new_campaign()
-
         campaign_name = functions.random_str(str_length=15)
 
-        dashboard_page = create_campaign_page.create_new_traffic_banner(
+        dashboard_page = login.create_new_campaign(
             main_url=functions.random_str(str_length=8) + '.ru',
             campaign_name=campaign_name,
-            banner_picture_path=os.path.join(root_dir, 'data', 'banner_picture.png'),
-            timeout=10
+            picture_path=os.path.join(root_dir, 'data', 'banner_picture.png'),
+            timeout=15
         )
 
         dashboard_page.find(
@@ -47,6 +50,7 @@ class TestUI(Base):
             )
         )
 
+    # @pytest.mark.skip
     @pytest.mark.UI
     def test_create_segment(self, login):
         segments_list_page = login.click_on_tab('segments')
@@ -54,7 +58,7 @@ class TestUI(Base):
         segment_name = functions.random_str(str_length=10)
         segments_list_page.create_new_segment(
             segment_name=segment_name,
-            timeout=5
+            timeout=15
         )
 
         segments_list_page.find(
@@ -64,6 +68,7 @@ class TestUI(Base):
             )
         )
 
+    # @pytest.mark.skip
     @pytest.mark.UI
     def test_delete_segment(self, login):
         segments_list_page = login.click_on_tab('segments')
@@ -72,12 +77,11 @@ class TestUI(Base):
 
         segments_list_page.create_new_segment(
             segment_name=segment_name,
-            timeout=5
+            timeout=15
         )
 
         segments_list_page.remove_segment(segment_name)
 
-        from selenium.common.exceptions import TimeoutException
         with pytest.raises(TimeoutException):
             self.driver.refresh()
             segments_list_page.find(

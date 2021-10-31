@@ -3,6 +3,10 @@ from ui.locators.header_page_locators import HeaderPageLocators
 
 
 class DashboardPageLocators(HeaderPageLocators):
+    CREATE_CAMPAIGN_LINK_LOCATOR = (
+        By.XPATH,
+        "//a[contains(@href, '/campaign/new')]"
+    )
     CREATE_CAMPAIGN_BUTTON_LOCATOR = (
         By.XPATH,
         "//div[contains(@class, 'headControlsWrapper')]//div[contains(@class, 'createButton')]/div/div"

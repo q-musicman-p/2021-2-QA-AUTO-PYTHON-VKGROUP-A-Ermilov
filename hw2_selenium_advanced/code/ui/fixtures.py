@@ -37,12 +37,11 @@ def get_driver(download_dir=None):
 @pytest.fixture(scope='function')
 def driver(config, temp_dir):
     browser = get_driver(download_dir=temp_dir)
-    # url = config['url']
-    # browser.get(url)
 
     yield browser
 
     browser.quit()
+
 
 @pytest.fixture(scope='function')
 def logger(temp_dir, config):

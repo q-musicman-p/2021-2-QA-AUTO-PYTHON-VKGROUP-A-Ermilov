@@ -1,3 +1,5 @@
+import allure
+
 from static_variables import CLICK_RETRY
 from ui.pages.base_page import BasePage
 from ui.locators.header_page_locators import HeaderPageLocators
@@ -19,6 +21,7 @@ class HeaderPage(BasePage):
                 if i == CLICK_RETRY - 1:
                     raise
 
+    @allure.step('Click on {tab_name} tab')
     def click_on_tab(self, tab_name, timeout=10):
         self.click(
             locator=(
@@ -27,13 +30,6 @@ class HeaderPage(BasePage):
             ),
             timeout=timeout
         )
-        # if tab_name == 'profile':
-        #     self.click(self.locators.PROFILE_BUTTON_LOCATOR, timeout)
-        # elif tab_name == 'statistics':
-        #     self.click(self.locators.STATISTICS_BUTTON_LOCATOR, timeout)
-        # elif tab_name == 'dashboard':
-        #     self.click(self.locators.DASHBOARD_BUTTON_LOCATOR, timeout)
-        # elif tab_name == 'segments':
 
         if tab_name == 'dashboard':
             import ui.pages.dashboard_page as dp

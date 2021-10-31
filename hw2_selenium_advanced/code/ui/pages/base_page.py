@@ -8,6 +8,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 from static_variables import CLICK_RETRY, BASE_TIMEOUT
 
+
 class PageNotLoadedException(Exception):
     pass
 
@@ -60,7 +61,7 @@ class BasePage(object):
                 self.find(locator, timeout=timeout)
                 elem = self.wait(timeout).until(EC.element_to_be_clickable(locator))
 
-                self.logger.debug(f'click on {locator} (try={i})')
+                self.logger.debug(f'click on {locator}, try={i}')
                 elem.click()
                 return
             except exceptions.StaleElementReferenceException:
@@ -82,4 +83,3 @@ class BasePage(object):
 
         self.logger.debug(f'write in field {locator} with {text}')
         field.send_keys(text)
-
