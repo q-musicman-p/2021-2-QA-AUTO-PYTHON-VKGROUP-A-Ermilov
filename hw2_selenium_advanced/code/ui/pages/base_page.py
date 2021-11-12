@@ -54,6 +54,11 @@ class BasePage(object):
         self.logger.debug(f'find {locator}')
         return self.wait(timeout).until(EC.presence_of_element_located(locator))
 
+    @allure.step("Find all elements {locator}")
+    def find_all(self, locator, timeout=None):
+        self.logger.debug(f'find all {locator}')
+        return self.wait(timeout).until(EC.presence_of_all_elements_located(locator))
+
     @allure.step("Click on {locator}")
     def click(self, locator, timeout=None):
         for i in range(CLICK_RETRY):
@@ -83,3 +88,17 @@ class BasePage(object):
 
         self.logger.debug(f'write in field {locator} with {text}')
         field.send_keys(text)
+
+    @allure.step('Is visible {locator}')
+    def is_visible(self, locator, timeout=None):
+        self.logger.debug(f'find and check visibility {locator}')
+        return self.wait(timeout).until(EC.visibility_of_element_located(locator))
+
+    @allure.step('Get list of {locator}')
+    def get_list_of(self, locator, timeout=None):
+        self.driver.refresh()
+        list_of_segments = self.find_all(locator, timeout=timeout)
+        res = [el.get_attribute('title') for el in list_of_segments]
+
+        self.logger.debug(f'Have got list of smth: {res}')
+        return res

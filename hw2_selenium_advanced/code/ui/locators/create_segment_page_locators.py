@@ -5,8 +5,7 @@ from ui.locators.header_page_locators import HeaderPageLocators
 class CreateSegmentPageLocators(HeaderPageLocators):
     IFRAME_SEGMENT_APPLICATIONS_AND_GAMES_CATEGORY_LOCATOR = (
         By.XPATH,
-        "//div[contains(@class, 'adding-segments-item') and " +
-        "(text()='Приложения и игры в соцсетях' or text()='Apps and games in social networks')]"
+        "//div[contains(@class, 'adding-segments-item') and text()='Приложения и игры в соцсетях']"
     )
     IFRAME_CONDITION_CHECKBOX_LOCATOR = (
         By.XPATH,

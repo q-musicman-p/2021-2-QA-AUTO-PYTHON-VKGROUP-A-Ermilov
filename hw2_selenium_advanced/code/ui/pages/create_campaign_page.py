@@ -30,5 +30,3 @@ class CreateCampaignPage(HeaderPage):
         self.logger.debug(f'New traffic banner to {main_url} are created')
         import ui.pages.dashboard_page as dp
         return dp.DashboardPage(self.driver)
-
-

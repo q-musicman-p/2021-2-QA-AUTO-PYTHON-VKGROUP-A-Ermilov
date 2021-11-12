@@ -2,7 +2,7 @@ import random
 import time
 
 
-def random_str(str_length=10, digits=True, use_time=True, alpha=True, spec_sym=False):
+def random_str(str_length=10, digits=True, use_time=True, alpha=True, spec_sym=False, email=False, url=False):
 
     if digits:
         current_time = str(time.time()) if use_time else ''
@@ -23,4 +23,10 @@ def random_str(str_length=10, digits=True, use_time=True, alpha=True, spec_sym=F
 
     result = [sym for sym in (number + string + spec_sym)]
     random.shuffle(result)
-    return ''.join(result)[:str_length]
+    res = ''.join(result)[:str_length]
+
+    if email:
+        return res + '@mail.ru'
+    if url:
+        return res + '.ru'
+    return res

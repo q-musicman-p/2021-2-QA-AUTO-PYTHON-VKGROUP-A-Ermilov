@@ -11,7 +11,11 @@ class DashboardPageLocators(HeaderPageLocators):
         By.XPATH,
         "//div[contains(@class, 'headControlsWrapper')]//div[contains(@class, 'createButton')]/div/div"
     )
-    COMPANY_HREF_LOCATOR_TEMPLATE = (
+    ALL_CAMPAIGN_LINKS_LOCATOR = (
         By.XPATH,
-        "//div[@data-entity-type='campaign']/a[@title='{}']"
+        "//div[@data-entity-type='campaign']/a"
+    )
+    CAMPAIGN_LINK_LOCATOR_TEMPLATE = (
+        By.XPATH,
+        ALL_CAMPAIGN_LINKS_LOCATOR[1] + "[@title='{}']"
     )

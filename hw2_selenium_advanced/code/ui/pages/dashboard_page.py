@@ -27,3 +27,7 @@ class DashboardPage(HeaderPage):
             banner_picture_path=picture_path,
             timeout=timeout
         )
+
+    @allure.step('Get list of campaigns')
+    def campaigns_list(self):
+        return self.get_list_of(self.locators.ALL_CAMPAIGN_LINKS_LOCATOR, timeout=7)

@@ -10,13 +10,17 @@ from ui.pages.login_page import LoginPage
 
 class Base:
 
+    authorize = False
+
     @pytest.fixture(scope='function', autouse=True)
-    def setup(self, driver, logger):
+    def setup(self, driver, logger, request):
         self.driver = driver
         self.logger = logger
 
-        self.driver.get('https://target.my.com/')
         self.login_page = LoginPage(driver)
+
+        if self.authorize:
+            self.dashboard_page = request.getfixturevalue('login')
 
         self.logger.debug('Initial setup completed')
 
@@ -40,5 +44,4 @@ class Base:
     @pytest.fixture(scope='function')
     def login(self):
         self.login_page.try_to_login(email=EMAIL, password=PASSWORD, timeout=15)
-
         return DashboardPage(self.driver)

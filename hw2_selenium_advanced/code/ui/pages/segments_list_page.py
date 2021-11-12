@@ -1,4 +1,6 @@
-import  allure
+from contextlib import contextmanager
+
+import allure
 
 from ui.locators.segments_list_page_locators import SegmentsListPageLocators
 from ui.pages.create_segment_page import CreateSegmentPage
@@ -36,3 +38,17 @@ class SegmentsListPage(HeaderPage):
         )
 
         self.click(self.locators.CONFIRM_REMOVE_SEGMENT_BUTTON_LOCATOR, timeout=timeout)
+
+    @allure.step('Get list of segments')
+    def segments_list(self):
+        return self.get_list_of(self.locators.ALL_SEGMENTS_LINK_LOCATOR, timeout=7)
+
+    @allure.step('New segment {segment_name}')
+    @contextmanager
+    def new_segment(self, segment_name, timeout=None):
+        seg_list_page = self.create_new_segment(segment_name, timeout=timeout)
+
+        yield seg_list_page
+
+        seg_list_page.remove_segment(segment_name, timeout=timeout)
+        assert segment_name not in self.segments_list()
