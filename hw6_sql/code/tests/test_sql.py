@@ -21,4 +21,3 @@ class TestSql(BaseTest):
     def test_task5(self):
         self.builder.create_task5_data()
         assert len(self.get_result_task(5)) == 5
-

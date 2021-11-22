@@ -63,4 +63,3 @@ class MysqlClient:
 
         if not inspect(self.engine).has_table(table_name):
             Base.metadata.tables[table_name].create(self.engine)
-

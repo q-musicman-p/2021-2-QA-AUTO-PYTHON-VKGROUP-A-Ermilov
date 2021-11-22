@@ -17,7 +17,8 @@ def pytest_configure(config):
 
     if not hasattr(config, 'workerinput'):
         mysql_client.create_all_tables()
-        log_parser.parse()
+
+    log_parser.parse()
 
     config.mysql_client = mysql_client
     config.log_parser = log_parser
